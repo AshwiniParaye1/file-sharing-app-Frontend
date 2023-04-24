@@ -75,10 +75,7 @@
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.innerMailCard ul li {
-  list-style-type: none;
 
-}
 
 .getDownloadBtn {
   background: transparent;
@@ -158,6 +155,9 @@ input[type="email"] {
   #root {
     max-width: 300px;
     padding: 1rem;
+    font-size: small;
+    min-width: -webkit-fill-available;
+    font-weight: bold;
   }
 
   .logo {
@@ -180,6 +180,9 @@ input[type="email"] {
   #root {
     max-width: 720px;
     padding: 1.5rem;
+    font-size: small;
+    min-width: -webkit-fill-available;
+    font-weight: bold;
   }
 
   .logo {
@@ -201,6 +204,7 @@ input[type="email"] {
   #root {
     max-width: 960px;
     padding: 2rem;
+
   }
 
   .logo {
