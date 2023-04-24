@@ -152,3 +152,87 @@ input[type="email"] {
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 400px) {
+  #root {
+    max-width: 300px;
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 4em;
+    padding: 1em;
+  }
+
+  .card {
+    padding: 1em;
+  }
+
+  .form {
+    padding: 10px;
+    width: 250px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  #root {
+    max-width: 720px;
+    padding: 1.5rem;
+  }
+
+  .logo {
+    height: 5em;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+
+  .form {
+    padding: 20px;
+    width: 300px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  #root {
+    max-width: 960px;
+    padding: 2rem;
+  }
+
+  .logo {
+    height: 6em;
+  }
+
+  .card {
+    padding: 2em;
+  }
+
+  .form {
+    padding: 20px;
+    width: 350px;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  #root {
+    max-width: 1140px;
+  }
+
+  .logo {
+    height: 7em;
+  }
+
+  .card {
+    padding: 2.5em;
+  }
+
+  .form {
+    padding: 30px;
+    width: 400px;
+  }
+}
