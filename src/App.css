@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  min-width: -webkit-fill-available;
 }
 
 .logo {
@@ -156,7 +157,6 @@ input[type="email"] {
     max-width: 300px;
     padding: 1rem;
     font-size: small;
-    min-width: -webkit-fill-available;
     font-weight: bold;
   }
 
@@ -181,7 +181,6 @@ input[type="email"] {
     max-width: 720px;
     padding: 1.5rem;
     font-size: small;
-    min-width: -webkit-fill-available;
     font-weight: bold;
   }
 
@@ -204,7 +203,6 @@ input[type="email"] {
   #root {
     max-width: 960px;
     padding: 2rem;
-
   }
 
   .logo {
