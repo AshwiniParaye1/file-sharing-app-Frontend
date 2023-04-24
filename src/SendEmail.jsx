@@ -60,7 +60,7 @@ const SendEmail = () => {
           </h1>
         </div>
         <h2>Congrats! your file is ready to Share</h2>
-        <div>
+        <div style={{ overflowWrap: "break-word" }}>
           <h4 style={{ color: "purple" }}>
             {downloadLink}{" "}
             <AiOutlineCopy onClick={handleCopy} style={{ fontSize: "20px" }} />
