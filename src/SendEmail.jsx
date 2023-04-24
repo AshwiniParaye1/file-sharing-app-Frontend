@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AiOutlineCopy } from "react-icons/ai";
 import logo from "./assets/zz.png";
+import Loader from "./Loader";
 
 const SendEmail = () => {
   const location = useLocation();
@@ -10,8 +11,11 @@ const SendEmail = () => {
   const [isCopied, setIsCopied] = useState(false);
   const [senderEmail, setSenderEmail] = useState("");
   const [receiverEmail, setReceiverEmail] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const sendPostRequest = async () => {
+    setIsLoading(true);
     const url = "https://fileshareapp-ckxt.onrender.com/api/send";
     const data = {
       uuid,
@@ -31,8 +35,12 @@ const SendEmail = () => {
       if (!response.ok) {
         throw new Error("Failed to send POST request");
       }
+
+      setIsLoading(false);
+      navigate("/");
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 
@@ -53,33 +61,38 @@ const SendEmail = () => {
         </div>
         <h2>Congrats! your file is ready to Share</h2>
         <div className="innerMailCard">
-          <h4>
+          <h4 style={{ color: "purple" }}>
             {downloadLink}{" "}
             <AiOutlineCopy onClick={handleCopy} style={{ fontSize: "20px" }} />
             <p>{isCopied && "Link copied!"}</p>
           </h4>
 
-          <p>Copy the link or share via Email</p>
+          <p style={{ color: "gray" }}>Copy the link or share via Email</p>
         </div>
 
         <div className="login-box">
           <div className="form">
             <div className="user-box">
-              <label>Sender's email:</label>
+              <label>Sender email : </label>
               <input
                 type="email"
                 name="sender-email"
                 value={senderEmail}
+                class="input"
                 required
                 onChange={(e) => setSenderEmail(e.target.value)}
+                placeholder="example@gmail.com "
               />
             </div>
             <div className="user-box">
-              <label>Recipient's email:</label>
+              <label>Recipient email : </label>
+
               <input
                 type="email"
                 name="recipient-email"
                 value={receiverEmail}
+                placeholder="example@gmail.com "
+                class="input"
                 required
                 onChange={(e) => setReceiverEmail(e.target.value)}
               />
@@ -87,16 +100,22 @@ const SendEmail = () => {
 
             {/* {error && <div className="error">{error}</div>} */}
             <center>
-              <button onClick={sendPostRequest}>Send</button>
+              <button
+                className="downloadBtn"
+                style={{ color: "purple" }}
+                onClick={sendPostRequest}
+                disabled={isLoading}
+              >
+                {isLoading ? <Loader /> : "Send Email"}
+              </button>
             </center>
           </div>
         </div>
 
-        <button className="downloadBtn">Download</button>
         <br />
-        <p>
+        {/* <p>
           <a href="/">Back</a>
-        </p>
+        </p> */}
       </div>
     </>
   );

@@ -1,9 +1,11 @@
 import { useRef, useState, useEffect } from "react";
 import logo from "./assets/zz.png";
 import { useNavigate } from "react-router-dom";
+import Loader from "./Loader";
 
 const Upload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   const handleFileButtonClick = () => {
@@ -27,6 +29,8 @@ const Upload = () => {
     formData.append("file", selectedFile);
 
     try {
+      setLoading(true); // Set loading state to true
+
       const response = await fetch(
         "https://fileshareapp-ckxt.onrender.com/api/uploads/",
         {
@@ -42,6 +46,8 @@ const Upload = () => {
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false); // Set loading state to false after the request is finished
     }
   };
 
@@ -56,7 +62,9 @@ const Upload = () => {
             inShare!
           </h1>
         </div>
-        <h3>Share files effortlessly with just a few clicks.</h3>
+        <h2 style={{ color: "purple", marginBottom: "60px" }}>
+          Share files effortlessly with just a few clicks.
+        </h2>
 
         <div>
           {/* File input hidden by default */}
@@ -67,15 +75,31 @@ const Upload = () => {
             onChange={handleFileChange}
           />
           {/* Button as file input */}
-          <button onClick={handleFileButtonClick}>
-            Drop your files here, or Browse
+          <button
+            style={{
+              color: "purple",
+              fontWeight: "bold",
+              marginBottom: "30px",
+            }}
+            onClick={handleFileButtonClick}
+          >
+            Click to upload your files here!
           </button>
           {/* Display selected file name */}
           {selectedFile && (
             <div>
-              <p>File Uploaded Successfully!</p>
-              <button className="getDownloadBtn" onClick={handleSubmit}>
-                Get Download Link
+              <p style={{ color: "gray" }}>File Uploaded Successfully!</p>
+              <button
+                className="getDownloadBtn"
+                style={{
+                  color: "purple",
+                  fontWeight: "bold",
+                  marginBottom: "30px",
+                }}
+                onClick={handleSubmit}
+              >
+                {/* Display a loader if loading state is true */}
+                {loading ? <Loader /> : "Get Download Link"}
               </button>
             </div>
           )}
